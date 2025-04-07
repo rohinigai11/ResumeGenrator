@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+<div class="resume">
+    <h1>Resume Generator</h1>
+    <b><label for="info">Personal Information</label><br></b>
+    <label for="name">Your Name</label><br>
+    <input type="text" placeholder="Enter name" id="name"><br>
+    
+    <label for="contact">Your Contact</label><br>
+    <input type="number" placeholder="Enter phone" id="contact"><br>
+    
+    <label for="email">Your Email</label><br>
+    <input type="email" placeholder="Enter Email" id="email"><br>
+    
+    <label for="photo">Select your photo</label><br>
+    <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto()"><br><br>
+    
+    <label for="address">Address</label><br>
+    <input type="text" placeholder="Enter your address" id="address"><br><br>
+    
+    <label for="dob">Date of Birth</label><br>
+    <input type="date" id="dob"><br><br>
+
+    <b><label for="education">Education</label><br></b>
+    <textarea id="education"></textarea><br><br>
+
+    <b><label for="language">Languages</label><br></b>
+    <input type="text" id="languages"><br><br>
+
+    <b><label for="internship">Internship Information</label></b><br>
+    <textarea id="internship"></textarea><br><br>
+
+    <b><label for="skills">Skills</label></b><br>
+    <input type="text" id="skills"><br><br>
+
+    <button id="btn" onclick="generateResume()">Generate Resume</button>
+</div>
+
+<div id="resumeoutput">
+    <h2>Generated Resume</h2>
+    <img id="outputPhoto" src="" alt="Profile Photo">
+    <p><strong>Name:</strong> <span id="outputName"></span></p>
+    <p><strong>Contact:</strong> <span id="outputContact"></span></p>
+    <p><strong>Email:</strong> <span id="outputEmail"></span></p>
+    <p><strong>Address:</strong> <span id="outputAddress"></span></p>
+    <p><strong>DOB:</strong> <span id="outputDOB"></span></p>
+    <p><strong>Education:</strong> <span id="outputEducation"></span></p>
+    <p><strong>Languages:</strong> <span id="outputLanguages"></span></p>
+    <p><strong>Internship:</strong> <span id="outputInternship"></span></p>
+    <p><strong>Skills:</strong> <span id="outputSkills"></span></p>
+</div>
+
+<script>
+    function previewPhoto() {
+        const file = document.getElementById("photoInput").files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const imgElement = document.getElementById("outputPhoto");
+            imgElement.src = e.target.result;
+            imgElement.style.display = "block";
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function generateResume() {
+        let name = document.getElementById("name").value;
+        let contact = document.getElementById("contact").value;
+        let email = document.getElementById("email").value;
+        let address = document.getElementById("address").value;
+        let dob = document.getElementById("dob").value;
+        let education = document.getElementById("education").value;
+        let languages = document.getElementById("languages").value;
+        let internship = document.getElementById("internship").value;
+        let skills = document.getElementById("skills").value;
+        
+        document.getElementById("outputName").innerText = name;
+        document.getElementById("outputContact").innerText = contact;
+        document.getElementById("outputEmail").innerText = email;
+        document.getElementById("outputAddress").innerText = address;
+        document.getElementById("outputDOB").innerText = dob;
+        document.getElementById("outputEducation").innerText = education;
+        document.getElementById("outputLanguages").innerText = languages;
+        document.getElementById("outputInternship").innerText = internship;
+        document.getElementById("outputSkills").innerText = skills;
+
+        document.getElementById("resumeoutput").style.display = "block";
+    }
+</script>
+</body>
+</html>
